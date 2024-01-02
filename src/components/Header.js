@@ -1,24 +1,23 @@
+import { Link, NavLink } from "react-router-dom"; 
+import Logo from "../assets/logo.png"
+import { useCart } from "../context/CartContext";
 import "./Header.css";
-import logo from "../assets/logo.png";
-import {Link, NavLink} from "react-router-dom";
-
-
 
 export const Header = () => {
+  const { cartList} = useCart();
   return (
     <header>
-     
-        <Link to="/" className="logo" >
-        <img src={logo} alt="eshop logo"/>
-        <span>EShop</span>
-        </Link>
-     
-        <nav className="navigation"> 
-        <NavLink to="/" end className="link">Home</NavLink>
+      <Link to="/" className="logo">
+        <img src={Logo} alt="Shopmate Logo" />
+        <span>Shopping Cart</span>
+      </Link>
+      <nav className="navigation">
+        <NavLink to="/" className="link" end>Home</NavLink>
         <NavLink to="/cart" className="link">Cart</NavLink>
-        </nav>
-        <Link to="/cart" className="items">cart:2</Link>
-     
+      </nav>
+      <Link to="/cart" className="items">
+        <span>Cart: {cartList.length}</span>
+      </Link>
     </header>
   )
 }
